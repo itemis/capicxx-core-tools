@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <forceContextQualifier>v${maven.build.timestamp}</forceContextQualifier>
         <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
-        <xtend-version>2.7.3</xtend-version>
+        <xtend-version>2.13.0</xtend-version>
     </properties>
 
     <pluginRepositories>
@@ -85,21 +85,35 @@
                 <artifactId>tycho-versions-plugin</artifactId>
                 <version>${tycho-version}</version>
             </plugin>
-            <plugin>
-                <groupId>org.eclipse.xtend</groupId>
-                <artifactId>xtend-maven-plugin</artifactId>
-                <version>${xtend-version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/xtend-gen</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.xtend</groupId>
+					<artifactId>xtend-maven-plugin</artifactId>
+					<version>${xtend-version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>compile</goal>
+								<!--
+								TODO Enable with newer Xtend version
+								<goal>xtend-install-debug-info</goal>
+								<goal>testCompile</goal>
+								<goal>xtend-test-install-debug-info</goal>
+								-->
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<outputDirectory>${basedir}/xtend-gen</outputDirectory>
+						<!--
+						TODO Enable with newer Xtend version
+						<testOutputDirectory>${basedir}/xtend-gen</testOutputDirectory>
+						-->
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>        
     </build>
 </project>
