@@ -11,7 +11,7 @@
         "name": "capicxx-core-tools", // Bintray package name
         "repo": "generic", // Bintray repository name
         "subject": "itemis", // Bintray subject (user or organization)
-        "desc": "I was pushed completely automatically",
+        "desc": "CommonAPI C++ is a standardized C++ API specification for the development of distributed applications which communicate via a middleware for interprocess communication.",
         "website_url": "https://genivi.github.io/capicxx-core-tools/",
         "issue_tracker_url": "https://github.com/itemis/capicxx-core-tools/issues",
         "vcs_url": "https://github.com/itemis/capicxx-core-tools.git",
@@ -20,7 +20,7 @@
         "licenses": ["MPL-2.0"],
         "labels": ["C++", "IPC", "D-Bus", "Franca"],
         "public_download_numbers": false,
-        "public_stats": false // ,
+        "public_stats": false,
         "attributes": []
     },
 
@@ -28,19 +28,40 @@
        In case the version already exists on Bintray, only the name fields is mandatory. */
 
     "version": {
-        "name": "3.1.13-SNAPSHOT",
+        "name": "3.1.13.SNAPSHOT",
         "desc": "This is a development version",
-        // "released": "2015-01-04",
+        // "released": "2018-01-19",
         // "vcs_tag": "0.5",
         "attributes": [],
         "gpgSign": false
     },
 
-    /* Configure the files to upload to Bintray and their upload path.
+    /* Configure the files to upload to Bintray and their upload path. */
 
     "files":
         [
-        {"includePattern": "org.genivi.commonapi.core.updatesite/target/repository/(.*)", "excludePattern": "target/.*.zip$", "uploadPattern": "/$1"}
+        {
+            "includePattern": "org.genivi.commonapi.core.updatesite/target/repository/(.*)",
+            "excludePattern": ".*/features/.*",
+            "uploadPattern": "$1",
+            "matrixParams": {
+                "override": 1
+            }
+        },
+        {
+            "includePattern": "org.genivi.commonapi.core.updatesite/target/repository/features/(.*)",
+            "uploadPattern": "capicxx-core-tools/3.1.13.SNAPSHOT/features/$1",
+            "matrixParams": {
+                "override": 1
+            }
+        },
+        {
+            "includePattern": "org.genivi.commonapi.core.updatesite/target/repository/plugins/(.*)",
+            "uploadPattern": "capicxx-core-tools/3.1.13.SNAPSHOT/plugins/$1",
+            "matrixParams": {
+                "override": 1
+            }
+        }
         ],
     "publish": true
 }
