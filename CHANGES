@@ -1,5 +1,7 @@
 Changes
 =======
+v3.1.13
+
 v3.1.12
 - Fix compiler warnings in generated code
 - Test adaptions
